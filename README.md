@@ -2,7 +2,17 @@
 
 Maintained by [aipieksel](https://github.com/aipieksel).
 
-Prompt Manager is a native SwiftUI macOS application for organizing reusable prompts, phrases and prompt chains. It includes nested folders, tags, search/filtering, variable expansion, Markdown/folder import, exports, backups, provider settings, and chain execution.
+Prompt Manager is a native macOS workspace for keeping the prompts and phrases you use repeatedly in one searchable library. Instead of hunting through documents or chats, you can organize material into folders, tag it, edit it, fill variables, and reuse it in a prompt chain.
+
+The app stores its library locally as JSON. It can import Markdown and folders, export and back up the library, and run AI actions when you configure a provider. Everyday browsing and editing work without an AI account. Provider credentials live in macOS Keychain.
+
+## How it works
+
+1. Add or import prompts and phrases, then organize them with folders and tags.
+2. Search the library, edit a prompt, and supply values for its variables.
+3. Copy or export the result, or run a configured chain with a provider you choose.
+
+The [project overview](docs/project-overview.md) explains the current app; the material under `project/` records product and design ideas that may not yet be implemented.
 
 ## Build and check
 
@@ -23,11 +33,11 @@ To launch a development process, use `swift run PromptManager`. It uses the app'
 - `Sources/PromptManagerCore/`: models, SwiftUI views, storage, imports, AI providers, settings and chains.
 - `Tests/PromptManagerTests/main.swift`: executable checks.
 - `docs/0-index.md`: current source-backed documentation.
-- `project/`: product and design reference material, not proof that every planned feature exists.
+- `project/`: product and design reference material.
 
 `PromptStore` persists a JSON library, normally under Application Support, with optional Documents/custom locations. It returns bundled synthetic sample prompts on first load. This implementation does not use SwiftData. Provider keys use macOS Keychain; selected AI requests are sent to the configured provider. Core library editing works locally without provider credentials. App data, backups, request logs, and actual credentials are not shared starter files.
 
-This is an application under development. The local check executable is not proof of installed-app signing, live-provider behavior, or every rendered UI state. The owner-original source is licensed under [MIT](LICENSE). Changing the bundle identifier orphans previously installed copies that used the old identifier.
+Prompt Manager is under development. The local checks cover core workflows but do not verify an installed app or a live provider. Changing the bundle identifier separates a new installation from data stored under the old identity. The owner-original source is licensed under [MIT](LICENSE).
 
 A matching full import fixture can be generated in a new temporary folder:
 
